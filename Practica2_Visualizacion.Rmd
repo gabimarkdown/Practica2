@@ -138,7 +138,7 @@ load("./data/weatherAUS.RData")
 #Creacion del objeto ggplot sobre sus dos variables indicadas en el apartado y el grafico de dispersion
 grafico1<-ggplot(ds, aes(x = MinTemp, y = MaxTemp))+geom_point()
 
-#Le añado la variable categorica RainTomorrow a traves delm color 
+#Le añado la variable categorica RainTomorrow a traves del color 
 grafico2<-ggplot(ds, aes(x = MinTemp, y = MaxTemp,colour=RainTomorrow))+geom_point()
 
 #Le añado el titulo al grafico que tenia del apartado anterior
@@ -188,6 +188,31 @@ ggsave("Ejercicio2.pdf",device="pdf")
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio3.pdf``.
 
 ```{r Solucion ejercicio 3}
+#cargo el archivo con load
+load("./data/iris_tidy.Rdata")
+#estructura del objeto R guardado en el archivo
+str(iris.tidy)
+
+#objeto ggplot con sus respectivas variables
+iris.grafico1<-ggplot(iris.tidy, aes(x = Species, y = Value))
+
+#creo el grafico de dispersion
+iris.grafico1<-ggplot(iris.tidy, aes(x = Species, y = Value))+geom_point()
+
+#visualizo la variable part con colour
+iris.grafico2<-ggplot(iris.tidy, aes(x = Species, y = Value,colour=Part))+geom_point()
+iris.grafico2
+
+#Introduzco una tercera variable measure en forma de filasy columnas
+iris.grafico2 + facet_grid(Measure~. )
+iris.grafico2  + facet_grid(.~Measure )
+#la disposicion en columnas permite compararlas mejor ya que se ven mas claros y definidos los datos
+iris.grafico3<-ggplot(iris.tidy, aes(x = Species, y = Value,colour=Part))+geom_jitter()
+iris.grafico3
+#Observo que los graficos se dividen en tres zonas y los puntos estan mas separados no como en el grafico original
+
+#almacenamiento
+ggsave("Ejercicio3.pdf",device="pdf")
 
 ```
 
