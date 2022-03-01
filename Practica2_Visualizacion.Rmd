@@ -287,7 +287,26 @@ ggplot(data=Dosis.Medicina2, aes(x=Dosis, y=Efectividad, group=Complemento)) +
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio4.pdf``.
 
 ```{r Solucion ejercicio 4}
+load('./data/Ejercicio4_Data.Rdata')
+library(ggplot2)
+#examinar las variables del dataset
+str(DatosEjer4)
 
+#grafico de puntos sobre las variables fecha y ventas y el color fabricante
+ggplot(DatosEjer4, aes(x=Fecha, y=Ventas,colour=Fabricante))+
+geom_point()
+#este grafico no es valido para representar la evolucion de las ventas de cada fabricante ya que no es claro y no nos indica una linea clara de progresion a la que seguir ,algo que si tendriamos mediante una linea.
+
+#le incluyo la linea
+ggplot(DatosEjer4, aes(x=Fecha, y=Ventas,colour=Fabricante))+
+geom_point()+geom_line()
+
+#cambio el tipo de linea de cada tendencia de cada fabricante y añado el titulo
+ggplot(DatosEjer4, aes(x=Fecha, y=Ventas,colour=Fabricante))+
+geom_point()+geom_line(aes(linetype=Fabricante))+ggtitle("Ventas mensuales de diferentes compañías tecnológicas")
+
+#almacenar
+ggsave("Ejercicio4.pdf",device="pdf")
 ```
 
 ## Barras de error con **ggplot2**
