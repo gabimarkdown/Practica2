@@ -158,7 +158,22 @@ ggsave("Ejercicio1.pdf",device="pdf")
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio2.pdf``.
 
 ```{r Solucion ejercicio 2}
+#grafico de dsipersion sobre las variables indicadas
+grafico<-ggplot(ds, aes(x = Temp9am, y = Pressure9am))+geom_point()
+grafico
 
+#le he incluido el color de los puntos sobre la variable categorica
+grafico<-ggplot(ds, aes(x = Temp9am, y = Pressure9am,color=RainToday))+geom_point()
+grafico
+
+#le he incluido la forma del punto sobre la variable categorica y le añafo un titulo descriptivo
+grafico_1<-ggplot(ds, aes(x = Temp9am, y = Pressure9am,shape=RainToday))+geom_point()+ggtitle("Grafico sobre dos variables(Temp9am y Pressure9am)de un conjunto de datos(ds)")
+grafico_1
+
+#La informacion se observa mejor con la representacion color ya que hace que la grafica se vea mas clara y los datos mejor definidos
+
+#guardo el ultimo grafico
+ggsave("Ejercicio2.pdf",device="pdf")
 ```
 
 ### **Ejercicio 3**
